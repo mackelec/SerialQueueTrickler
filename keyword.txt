@@ -1,0 +1,5 @@
+CircularBuffer  KEYWORD1
+enqueue KEYWORD2
+enqueueArray KEYWORD2
+poll    KEYWORD2
+setBurstSize    KEYWORD2
