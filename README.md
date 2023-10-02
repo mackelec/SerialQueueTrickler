@@ -59,3 +59,11 @@ void loop() {
   delay(500); // Simulating other tasks with a delay
 }
 ```
+
+## Note on Non-Blocking Behavior
+
+This library can operate in a truly non-blocking manner under specific conditions: when the burst size is set to 1 and the sending methods are called at a frequency slower than the transmission rate of the serial port.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
