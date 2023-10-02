@@ -1,4 +1,4 @@
-#include "SerialQueueTrickler.h"
+#include <SerialQueueTrickler.h>
 
 SerialQueueTrickler buffer(Serial1, 64); // Now using Serial1
 
