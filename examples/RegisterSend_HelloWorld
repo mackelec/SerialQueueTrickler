@@ -1,0 +1,18 @@
+#include <SerialQueueTrickler.h>
+
+SerialQueueTrickler trickler(Serial, 64); // Creating an instance with Serial, buffer size 64
+
+void setup() {
+  Serial.begin(9600); // Initialize Serial communication at 9600 baud rate
+  trickler.enqueue((const byte*)"Hello, World!"); // Enqueue a string to the buffer
+}
+
+void loop() {
+  // If running on an STM32F processor, this regSend operation sends data directly at register level
+  trickler.regSend(); // Continuously call regSend to transmit the data byte-by-byte
+  
+  // Delay 500 ms between each byte to visualize the non-blocking nature.
+  // During this time, the microcontroller can perform other tasks, 
+  // demonstrating the non-blocking characteristic of regSend.
+  delay(500); 
+}
