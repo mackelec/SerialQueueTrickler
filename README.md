@@ -82,6 +82,19 @@ The library provides various methods to queue data for transmission, catering to
     ```
 
 
+### `void setBurstSize(size_t burstSize);`
+
+#### Description
+This method is used to set the size of the data burst. It allows you to configure how many bytes will be sent at once during each call to the send method.
+
+#### Parameters
+- `burstSize`: The number of bytes to send at once.
+
+#### Example
+```
+trickler.setBurstSize(16);  // Sets the burst size to 16 bytes.
+```
+
 ## Note on Non-Blocking Behavior
 
 This library can operate in a truly non-blocking manner under specific conditions: when the burst size is set to 1 and the sending methods are called at a frequency slower than the transmission rate of the serial port.
