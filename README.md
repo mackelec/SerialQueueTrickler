@@ -108,7 +108,7 @@ if (trickler.isEmpty()) {
     Serial.println("Buffer has data");
 }
 ```
-### `size_t freeSpace() const;`
+### `size_t freeSpace()`
 
 #### Description:
 This method returns the amount of free space available in the buffer, allowing you to assess how many more bytes can be enqueued before the buffer becomes full.
