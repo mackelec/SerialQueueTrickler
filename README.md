@@ -1,49 +1,46 @@
 # SerialQueueTrickler Library
 
+**Introducing SerialQueueTrickler: Achieve precise, non-blocking serial communication for your Arduino projects.**
+
 ## Description
 
-SerialQueueTrickler is an Arduino library designed to enable efficient, non-blocking serial communication, especially on platforms like STM32 where `Serial.write()` can be blocking. This library is intentionally designed not to use interrupts, allowing precise control over when bytes are sent. This is advantageous in scenarios where the user needs to send bytes at specific times, ensuring other tasks are not interrupted unintentionally.
+SerialQueueTrickler is an Arduino library designed to provide efficient, non-blocking serial communication. This is particularly valuable for platforms like STM32 where `Serial.write()` can be blocking. Without relying on interrupts, the library gives users exact control over byte transmission timings, ideal for scenarios where specific byte sending intervals are crucial without unintended task interruptions.
 
-When used with a burst size of 1 and the frequency of calling the send methods is slower than the transmission rate, this library operates in a non-blocking manner, allowing the microcontroller to perform other tasks between sends.
+When the library operates with a burst size of 1, and the frequency of calling the send methods is slower than the serial port's transmission rate, it ensures non-blocking functionality, giving the microcontroller freedom to manage other tasks in between sends.
 
 ## Key Features
 
-- **Non-Blocking Operations:** Efficient serial communication allowing microcontroller to multitask.
-- **Controlled Transmission:** Intentional absence of interrupts for user-controlled byte sending.
-- **Optimized Performance:** Direct register access on supported platforms for high-speed transmission.
-- **Flexible Data Sending:** Supports sending data in customizable bursts or byte-by-byte.
-- **Extendable and Configurable:** Can be easily adapted for various platforms and use cases.
+- **Non-Blocking Operations:** Achieve multitasking with efficient serial communication.
+- **Controlled Transmission:** No interrupts ensure user-defined byte transmission timings.
+- **Optimized Performance:** Leverages direct register access for swift transmissions on supported platforms.
+- **Flexible Data Sending:** Choose between customizable bursts or single-byte transmissions.
+- **Extendable and Configurable:** Easily tailor the library for diverse platforms and requirements.
 
 ## How to Use
 
 ### Basic Usage
 
 1. **Include the Library**
-
     ```cpp
     #include <SerialQueueTrickler.h>
     ```
 
-2. **Create an Instance**
-
+2. **Initialize the Trickler**
     ```cpp
     SerialQueueTrickler trickler(Serial, 64);
     ```
 
 3. **Enqueue Data**
-
     ```cpp
     trickler.enqueue((const byte*)"Hello, World!");
     ```
 
 4. **Transmit Data**
-
     ```cpp
-    trickler.regSend(); // For register-level, user-controlled transmission.
+    trickler.regSend(); // Initiates register-level, user-controlled data transmission.
     ```
 
 ### Example Sketch
-
 ```cpp
 #include <SerialQueueTrickler.h>
 
@@ -58,6 +55,7 @@ void loop() {
   trickler.regSend(); // Transmit data byte-by-byte
   delay(500); // Simulating other tasks with a delay
 }
+
 ```
 
 # Enqueue Methods
