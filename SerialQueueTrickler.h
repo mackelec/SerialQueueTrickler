@@ -13,6 +13,8 @@ public:
     void send();
     void regSend();
     void setBurstSize(size_t burstSize);
+    bool isEmpty() const;
+    size_t freeSpace() const;
 
 private:
     Stream& _serial;
