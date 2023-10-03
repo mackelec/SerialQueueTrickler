@@ -7,17 +7,29 @@ SerialQueueTrickler::SerialQueueTrickler(Stream& serial, size_t bufferSize)
     #if defined(STM32F1xx) || defined(STM32F0xx) || defined(STM32F4xx)
     usartInstance = nullptr; // Default to nullptr
     #ifdef SERIAL1
-    if(&_serial == &Serial1) usartInstance = USART1;
+    if(&_serial == &Serial1) {
+        usartInstance = USART1;
+    }
+    #endif
+    #ifdef SERIAL
+    if (&_serial == &Serial) {
+        usartInstance = USART1;
+    }
     #endif
     #ifdef SERIAL2
-    if(&_serial == &Serial2) usartInstance = USART2;
+    if(&_serial == &Serial2) {
+        usartInstance = USART2;
+    }
     #endif
     #ifdef SERIAL3
-    if(&_serial == &Serial3) usartInstance = USART3;
+    if(&_serial == &Serial3) {
+        usartInstance = USART3;
+    }
     #endif
     //... Handle other USARTs similarly ...
     #endif
 }
+
 
 
 SerialQueueTrickler::SerialQueueTrickler(Stream& serial, size_t bufferSize, size_t burstSize)
