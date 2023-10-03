@@ -58,25 +58,25 @@ void loop() {
 
 ```
 
-## Enqueue Methods
+### Enqueue Methods
 
 The library provides various methods to queue data for transmission, catering to different data types and requirements:
 
-### `enqueueByte()`
+#### `enqueueByte()`
 - **Adds a single byte to the queue.** Ideal for standalone byte transmissions.
-    ```cpp
+    ```
     trickler.enqueueByte(0xA5); // Enqueues the hexadecimal byte 0xA5
     ```
 
-### `enqueue()`
+#### `enqueue()`
 - **Queues strings, terminating upon encountering a '\0'.** Perfect for C-style strings.
-    ```cpp
+    ```
     trickler.enqueue((const byte*)"Hello, World!"); // Enqueues the string "Hello, World!"
     ```
 
-### `enqueueBinary()`
+#### `enqueueBinary()`
 - **Tailored for binary data, accommodating '\0' bytes.** Requires specifying data length.
-    ```cpp
+    ```
     byte binaryData[] = { 0x01, 0xA5, 0x00, 0xFF };
     trickler.enqueueBinary(binaryData, 4); // Enqueues the 4 bytes from binaryData
     ```
