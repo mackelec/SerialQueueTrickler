@@ -46,20 +46,23 @@ bool SerialQueueTrickler::enqueueByte(byte data) {
     return true;
 }
 
-bool SerialQueueTrickler::enqueue(const byte* data, size_t length) {
-    if(length == 0) {
-        if (data[0] == '\0') return true;
-        for(size_t i = 0; data[i] != '\0'; i++) {
-            if(!enqueueByte(data[i])) return false;
-        }
-        return true;
-    }
-    for(size_t i = 0; i < length; i++) {
-        if(!enqueueByte(data[i])) return false;
+// For standard character arrays (stops at the null terminator)
+bool SerialQueueTrickler::enqueue(const byte* data) {
+    size_t i = 0;
+    while (data[i] != '\0') {
+        if (!enqueueByte(data[i])) return false;
+        i++;
     }
     return true;
 }
 
+// For binary data; requires the length to be specified
+bool SerialQueueTrickler::enqueueBinary(const byte* data, size_t length) {
+    for (size_t i = 0; i < length; i++) {
+        if (!enqueueByte(data[i])) return false;
+    }
+    return true;
+}
 void SerialQueueTrickler::send() {
     size_t sent = 0;
     while (_head != _tail && sent < _burstSize) {
