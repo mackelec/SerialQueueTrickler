@@ -95,6 +95,20 @@ This method is used to set the size of the data burst. It allows you to configur
 trickler.setBurstSize(16);  // Sets the burst size to 16 bytes.
 ```
 
+### `bool isEmpty() const;`
+
+#### Description:
+This method checks if the buffer is currently empty. It returns `true` if there are no bytes in the buffer to be sent, and `false` otherwise.
+
+#### Example:
+```
+if (trickler.isEmpty()) {
+    Serial.println("Buffer is empty");
+} else {
+    Serial.println("Buffer has data");
+}
+```
+
 ## Note on Non-Blocking Behavior
 
 This library can operate in a truly non-blocking manner under specific conditions: when the burst size is set to 1 and the sending methods are called at a frequency slower than the transmission rate of the serial port.
