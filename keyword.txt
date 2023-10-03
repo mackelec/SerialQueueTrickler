@@ -1,5 +1,9 @@
-CircularBuffer  KEYWORD1
+SerialQueueTrickler  KEYWORD1
+enqueueByte KEYWORD2
 enqueue KEYWORD2
-enqueueArray KEYWORD2
-poll    KEYWORD2
-setBurstSize    KEYWORD2
+enqueueBinary KEYWORD2
+send KEYWORD2
+regSend KEYWORD2
+setBurstSize KEYWORD2
+isEmpty KEYWORD2
+freeSpace KEYWORD2
