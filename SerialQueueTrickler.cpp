@@ -75,3 +75,15 @@ void SerialQueueTrickler::regSend() {
 void SerialQueueTrickler::setBurstSize(size_t burstSize) {
     _burstSize = burstSize;
 }
+
+bool SerialQueueTrickler::isEmpty() const {
+    return _head == _tail;
+}
+
+size_t SerialQueueTrickler::freeSpace() const {
+    if (_head >= _tail) {
+        return _bufferSize - (_head - _tail) - 1;
+    } else {
+        return _tail - _head - 1;
+    }
+}
