@@ -60,6 +60,37 @@ void loop() {
 }
 ```
 
+# Enqueue Methods
+
+This library offers various methods to enqueue data for transmission, catering to different data types and scenarios:
+
+## enqueueByte Method
+- **Description**: The `enqueueByte` method is designed to add a single byte to the queue. This is useful when you want to send a solitary byte without any associated data.
+  
+- **Usage**:
+  
+  ```cpp
+  trickler.enqueueByte(0xA5); // Enqueues the hexadecimal byte 0xA5
+```
+## enqueue Method
+- **Description**: The `enqueue` method is designed for enqueuing strings. It assumes the provided data ends when it encounters a '\0' null terminator. This makes it ideal for enqueuing traditional C-style strings.
+  
+- **Usage**:
+
+  ```cpp
+  trickler.enqueue((const byte*)"Hello, World!"); // Enqueues the string "Hello, World!"
+```
+
+## enqueueBinary Method
+- **Description**: The `enqueueBinary` method is specifically tailored for binary data, which may include bytes that are '\0'. Due to the possibility of null bytes within the data, this method requires an explicit length to know how much data to enqueue.
+  
+- **Usage**:
+
+  ```cpp
+  byte binaryData[] = { 0x01, 0xA5, 0x00, 0xFF };
+  trickler.enqueueBinary(binaryData, 4); // Enqueues the 4 bytes from binaryData
+```
+
 ## Note on Non-Blocking Behavior
 
 This library can operate in a truly non-blocking manner under specific conditions: when the burst size is set to 1 and the sending methods are called at a frequency slower than the transmission rate of the serial port.
